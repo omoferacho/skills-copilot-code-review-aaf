@@ -912,13 +912,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const bannerItem = document.createElement("div");
       bannerItem.className = `announcement-banner-item ${announcement.priority}`;
-      bannerItem.innerHTML = `
-        <span>${priorityIcon}</span>
-        <div>
-          <div class="announcement-banner-item-title">${announcement.title}</div>
-          <div class="announcement-banner-item-message">${announcement.message}</div>
-        </div>
-      `;
+
+      const iconSpan = document.createElement("span");
+      iconSpan.textContent = priorityIcon;
+
+      const textContainer = document.createElement("div");
+
+      const titleDiv = document.createElement("div");
+      titleDiv.className = "announcement-banner-item-title";
+      titleDiv.textContent = announcement.title;
+
+      const messageDiv = document.createElement("div");
+      messageDiv.className = "announcement-banner-item-message";
+      messageDiv.textContent = announcement.message;
+
+      textContainer.appendChild(titleDiv);
+      textContainer.appendChild(messageDiv);
+
+      bannerItem.appendChild(iconSpan);
+      bannerItem.appendChild(textContainer);
       announcementsBanner.appendChild(bannerItem);
     });
   }
